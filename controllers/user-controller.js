@@ -48,8 +48,10 @@ const userController = {
       .then(user => {
         if (!user) throw new Error("User doesn't exist!")
 
+        const plainUser = user.get({ plain: true })
+
         res.render('users/profile', {
-          user: user.toJSON()
+          plainUser
         })
       })
       .catch(err => next(err))
